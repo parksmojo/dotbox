@@ -1,4 +1,4 @@
-export type Player = 0 | 1 | 2;
+type PlayerIdx = 0 | 1 | 2;
 
 export type Orientation = 'H' | 'V';
 
@@ -14,9 +14,9 @@ export class Board {
 
   horizontalLines: boolean[][];
   verticalLines: boolean[][];
-  boxOwner: Player[][];
+  boxOwner: PlayerIdx[][];
 
-  currentPlayer: Player;
+  currentPlayer: PlayerIdx;
   score: number[];
 
   constructor(rows: number, cols: number) {
@@ -26,7 +26,7 @@ export class Board {
 
     this.horizontalLines = Array.from({ length: rows + 1 }, () => Array<boolean>(cols).fill(false));
     this.verticalLines = Array.from({ length: rows }, () => Array<boolean>(cols + 1).fill(false));
-    this.boxOwner = Array.from({ length: rows }, () => Array<Player>(cols).fill(0));
+    this.boxOwner = Array.from({ length: rows }, () => Array<PlayerIdx>(cols).fill(0));
 
     this.currentPlayer = 1;
     this.score = [0, 0, 0];
@@ -128,7 +128,7 @@ export class Board {
     return top && bottom && left && right;
   }
 
-  captureBox(br: number, bc: number, player: Player): void {
+  captureBox(br: number, bc: number, player: PlayerIdx): void {
     if (this.boxOwner[br][bc] === 0) {
       this.boxOwner[br][bc] = player;
     }
