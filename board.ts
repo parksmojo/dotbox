@@ -134,6 +134,38 @@ export class Board {
     }
   }
 
+  toString(): string {
+    const lines: string[] = [];
+    const hSeg = (draw: boolean) => (draw ? '---' : '   ');
+    const vSeg = (draw: boolean) => (draw ? '|' : ' ');
+
+    for (let r = 0; r < this.rows; r++) {
+      let top = '';
+      for (let c = 0; c < this.cols; c++) {
+        top += `+${hSeg(this.horizontalLines[r][c])}`;
+      }
+      top += '+';
+      lines.push(top);
+
+      let mid = '';
+      for (let c = 0; c < this.cols; c++) {
+        const owner = this.boxOwner[r][c] === 0 ? ' ' : String(this.boxOwner[r][c]);
+        mid += `${vSeg(this.verticalLines[r][c])} ${owner} `;
+      }
+      mid += vSeg(this.verticalLines[r][this.cols]);
+      lines.push(mid);
+    }
+
+    let bottom = '';
+    for (let c = 0; c < this.cols; c++) {
+      bottom += `+${hSeg(this.horizontalLines[this.rows][c])}`;
+    }
+    bottom += '+';
+    lines.push(bottom);
+
+    return lines.join('\n');
+  }
+
   isGameOver(): boolean {
     for (let r = 0; r <= this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {

@@ -5,7 +5,7 @@ export abstract class Player {
 
   constructor(
     public playerNumber: number,
-    public param: number
+    public param?: number
   ) {}
 
   abstract getMove(board: Board): Move;
