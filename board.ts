@@ -179,4 +179,16 @@ export class Board {
     }
     return true;
   }
+
+  get winningPlayer() {
+    if (!this.isGameOver()) return 0;
+
+    if (this.score[1] > this.score[2]) {
+      return 1;
+    } else if (this.score[2] > this.score[1]) {
+      return 2;
+    }
+
+    return 3;
+  }
 }
