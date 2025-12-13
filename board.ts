@@ -1,4 +1,4 @@
-type PlayerIdx = 0 | 1 | 2;
+export type PlayerIdx = 0 | 1 | 2;
 
 export type Orientation = 'H' | 'V';
 

@@ -3,7 +3,7 @@ import { z } from 'npm:zod';
 import { run } from './run.ts';
 import { PlayerMap, PlayerType } from './players/types.ts';
 
-const PlayerSchema = z.enum(['random', 'human', 'alpha', 'carlo']);
+const PlayerSchema = z.enum(['random', 'human', 'alpha', 'carlo', 'monty']);
 const optionalInt = z.preprocess(
   val => (typeof val === 'number' && Number.isNaN(val) ? undefined : val),
   z.number().int().optional()
